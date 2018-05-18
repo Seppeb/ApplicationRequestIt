@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ApplicationRequestIt.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "Index";
+}
+<br/>
+<h2>Gebruikerbeheer</h2>  <hr /><br/> 
+<p>
+    @*<a class="btn btn-primary" asp-action="Create">Create New</a> *@
+</p>
+<form>
+    <table class="table  table-condensed table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Voornaam)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Achternaam)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Klant)
+                </th>
+                <th>
+                    Gebruikersnaam
+                </th>
+                <th>
+                    Email Bevestigd
+                </th>
+                <th>
+                    Telefoonnummer
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.isAdmin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.isBehandelaar)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Voornaam)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Achternaam)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Klant)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailConfirmed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        <div class="switch">
+                            <label>
+                                <input disabled asp-for="@item.isAdmin" type="checkbox" />
+                                <span class="lever"></span>                                
+                            </label>
+                        </div>  
+                        
+                    </td>
+                    <td>
+                        <div class="switch">
+                            <label>
+                                <input disabled asp-for="@item.isBehandelaar" type="checkbox" />
+                                <span class="lever"></span>
+                            </label>
+                        </div>
+                        
+                    </td>
+                    <td>
+                        <a class="btn blue glyphicon glyphicon-edit" asp-action="Edit" asp-route-id="@item.Id"></a>
+                    </td>
+                    <td>
+                        <a class="btn green glyphicon glyphicon-info-sign" asp-action="Details" asp-route-id="@item.Id"></a>
+                    </td>
+                    <td>
+                        <a class="btn red glyphicon glyphicon-trash" asp-action="Delete" asp-route-id="@item.Id"></a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

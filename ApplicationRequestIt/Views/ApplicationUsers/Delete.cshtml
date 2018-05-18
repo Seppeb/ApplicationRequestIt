@@ -1,0 +1,112 @@
+﻿@model ApplicationRequestIt.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Delete";
+}
+<h2>Verwijder</h2>
+<h4>Bent u zeker dat u de volgende gebruiker wilt verwijderen?</h4>
+
+<div>
+    <form asp-action="Delete">
+        <hr />
+        <div class="form-group">
+            <label asp-for="Voornaam" class="control-label"></label>
+            <input asp-for="Voornaam" readonly class="form-control" />
+            <span asp-validation-for="Voornaam" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Achternaam" class="control-label"></label>
+            <input asp-for="Achternaam" readonly class="form-control" />
+            <span asp-validation-for="Achternaam" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Klant" class="control-label"></label>
+            <input asp-for="Klant" readonly class="form-control" />
+            <span asp-validation-for="Klant" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Gebruikersnaam</label>
+            <input asp-for="UserName" readonly class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" readonly class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="switch">
+                <label>
+                    <input disabled asp-for="EmailConfirmed" type="checkbox" />
+                    <span class="lever"></span>Email bevestigd?
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Telefoonnummer</label>
+            <input readonly asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        @*<div class="form-group">
+            <div>
+                <label>
+                    <input asp-for="PhoneNumberConfirmed" type="checkbox" />Telefoon bevestigd
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input disabled asp-for="isAdmin" /> @Html.DisplayNameFor(model => model.isAdmin)
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input disabled asp-for="isBehandelaar" /> @Html.DisplayNameFor(model => model.isBehandelaar)
+                </label>
+            </div>
+        </div>*@
+        <div class="form-group">
+            <div class="switch">
+                <label>
+                    <input disabled asp-for="PhoneNumberConfirmed" type="checkbox" />
+                    <span class="lever"></span>
+                    Telefoon bevestigd
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="switch">
+                <label>
+                    <input disabled asp-for="isBehandelaar" type="checkbox" />
+                    <span class="lever"></span>
+                    @Html.DisplayNameFor(model => model.isBehandelaar)
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="switch">
+                <label>
+                    <input disabled asp-for="isAdmin" type="checkbox" />
+                    <span class="lever"></span>
+                    @Html.DisplayNameFor(model => model.isAdmin)
+                </label>
+            </div>
+        </div>
+
+
+        @if (Model.CustomerAanvragen.Count == 0 && Model.BehandelaarAanvragen.Count == 0)
+        {
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Verwijder" class="btn red" />
+        }
+        else
+        {
+            <label>De gebruiker heeft nog aanvragen gelieve deze eerst te verwijderen</label>
+        }
+        <a class="btn green" asp-action="Index">Terug naar overzicht</a>
+    </form>
+</div>
