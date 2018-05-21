@@ -9,9 +9,11 @@
 
 <form asp-action="IndexAllAanvragen" method="get">
     <div class="form-actions no-color">
-        <label>Zoekterm:</label><input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-        <input type="submit" value="Search" class="btn blue" />
-        <a class="btn green" asp-action="IndexAllAanvragen">Toon alles</a>
+        <div class="row text-right">
+            <label>Zoekterm:</label><input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn blue" />
+            <a class="btn green" asp-action="IndexAllAanvragen">Toon alles</a>
+        </div>
     </div>
 </form>
 

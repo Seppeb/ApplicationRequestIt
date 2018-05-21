@@ -48,15 +48,15 @@ namespace ApplicationRequestIt.Data
                     Email = "Behandelaar@behandelaar.be",
                     isBehandelaar = true,
                     Voornaam = "Felix",
-                    Achternaam = "bergs",
+                    Achternaam = "Bergs",
                 };
                 var user = new ApplicationUser
                 {
                     UserName = "User@user.be",
                     Email = "User@user.be",
-                    Voornaam = "pieter",
-                    Achternaam = "kardinaals",
-                    Klant = "torfs"
+                    Voornaam = "Pieter",
+                    Achternaam = "Kardinaals",
+                    Klant = "Torfs"
                 };
                 var user2 = new ApplicationUser
                 {
@@ -71,13 +71,13 @@ namespace ApplicationRequestIt.Data
                 string behandelaarPWD = "Behandelaar!234";
                 string userPWD = "User!234";
                 string koenpsw = "Koen!234";
-                // 
+                string adminPWD = "Admin!234";
+                
+                // user zoeken, indien niet bestaat word deze aangemaakt door usermanager.
 
                 var _behandelaar = await UserManager.FindByEmailAsync("Behandelaar@behandelaar.be");
                 var _user = await UserManager.FindByEmailAsync("User@user.be");
-                var _koen = await UserManager.FindByEmailAsync("koen@devoslemmens.be");
-
-                string adminPWD = "Admin!234";
+                var _koen = await UserManager.FindByEmailAsync("koen@devoslemmens.be");                
                 var _admin = await UserManager.FindByEmailAsync("Admin@admin.be");
 
                 if (_admin == null)
@@ -116,7 +116,6 @@ namespace ApplicationRequestIt.Data
                         await UserManager.AddToRoleAsync(user2, SD.CustomerEndUser);
 
                     }
-
                 }
             }
 
@@ -138,6 +137,9 @@ namespace ApplicationRequestIt.Data
                 }
             }
 
+            await context.SaveChangesAsync();
+
+            // dit het ik in een aparte klasse gestoken, gaf errors omdat deze status objecten niet kon vinden.
 
             //if (!context.Aanvragen.Any())
             //{
@@ -158,9 +160,6 @@ namespace ApplicationRequestIt.Data
             //        new Aanvraag { ApplicationUser = UserManager.Users.Single(s => s.Voornaam.Equals("pieter")), Titel="Niewe mannenmode", BehandelaarApplicationUser = UserManager.Users.Single(s => s.Voornaam.Equals("Felix")),
             //         StartDatum = new DateTime(2018,05,10), EindDatum = new DateTime(2018,10,20), StatusId = 4, LinkVoorbeeldKlant = "www.mannenmodetorfs.be", LinkVoorbeeldBehandelaar = "www.mannenmodevoorbeeld.be",
             //         Omschrijving ="onze mannamode collectie is vernieuwe en willen we in de kijker zetten", Aanmaakdatum = DateTime.Now.AddDays(12) },
-
-
-
             // };
             //    foreach (Aanvraag s in Aanvragen)
             //    {
@@ -178,7 +177,6 @@ namespace ApplicationRequestIt.Data
             //        context.Berichten.Add(s);
             //    }
             //}
-            await context.SaveChangesAsync();
         }
         public static async Task Aanvragen(ApplicationDbContext context, IServiceProvider serviceProvider)
         {

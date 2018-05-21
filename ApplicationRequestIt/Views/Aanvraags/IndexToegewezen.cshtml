@@ -8,7 +8,7 @@
         <div class="row text-right">
             <label>Zoekterm:</label><input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
             <input type="submit" value="Search" class="btn blue" />
-            <a class="btn green" asp-action="IndexAllAanvragen">Toon alles</a>
+            <a class="btn green" asp-action="IndexToegewezen">Toon alles</a>
         </div>
     </div>
 </form>
@@ -18,21 +18,12 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Titel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Omschrijving)
-            </th>
+            </th>            
             <th>
                 Gebruiker
-            </th>
+            </th>            
             <th>
-                @Html.DisplayNameFor(model => model.Status.Naam)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDatum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EindDatum)
+               Periode
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LinkVoorbeeldKlant)
@@ -56,26 +47,18 @@
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Titel)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Omschrijving)
-                    </td>
+                    </td>                    
                     <td>
                         @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
-                    </td>
+                    </td>                    
                     <td>
-                        @Html.DisplayFor(modelItem => item.Status.Naam)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StartDatum)
-                    </td>
-                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDatum) -                     
                         @Html.DisplayFor(modelItem => item.EindDatum)
                     </td>
-                    <td>
+                    <td class="btn-link">
                         @Html.DisplayFor(modelItem => item.LinkVoorbeeldKlant)
                     </td>
-                    <td>
+                    <td class="btn-link">
                         @Html.DisplayFor(modelItem => item.LinkVoorbeeldBehandelaar)
                     </td>
                     <td>

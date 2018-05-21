@@ -39,10 +39,7 @@ else
                     @Html.DisplayNameFor(model => model.Titel)
                 </th>                             
                 <th>
-                    @Html.DisplayNameFor(model => model.StartDatum)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EindDatum)
+                    Periode
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Aanmaakdatum)
@@ -64,9 +61,7 @@ else
                         @Html.DisplayFor(modelItem => item.Titel)
                     </td>                    
                     <td>
-                        @Html.DisplayFor(modelItem => item.StartDatum)
-                    </td>
-                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDatum) -                     
                         @Html.DisplayFor(modelItem => item.EindDatum)
                     </td>
                     <td>
