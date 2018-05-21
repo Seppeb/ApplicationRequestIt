@@ -27,9 +27,24 @@ namespace ApplicationRequestIt.Controllers
         }
 
         // GET: ApplicationUsers
-        public async Task<IActionResult> Index(bool isAdmin, bool isBehandelaar)
+        public async Task<IActionResult> Index(bool isAdmin, bool isBehandelaar, string searchString)
         {
-            return View(await _context.ApplicationUser.AsNoTracking().ToListAsync());
+            ViewData["CurrentFilter"] = searchString;
+
+            var lijstgebruikers = _context.ApplicationUser.AsNoTracking();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                lijstgebruikers = lijstgebruikers
+                    .Where(
+                    s => s.Voornaam.Contains(searchString) ||
+                    s.Achternaam.Contains(searchString) ||
+                    s.Klant.Contains(searchString) ||
+                    s.UserName.Contains(searchString) ||
+                    s.Email.Contains(searchString));
+            }
+
+            return View(await lijstgebruikers.ToListAsync());
         }
 
         // GET: ApplicationUsers/Details/5
@@ -94,13 +109,13 @@ namespace ApplicationRequestIt.Controllers
         {
             if (user.isAdmin == true)
             {
-                 _userManager.AddToRoleAsync(user, SD.AdminEndUser);
-                 _context.SaveChangesAsync();
+                _userManager.AddToRoleAsync(user, SD.AdminEndUser);
+                _context.SaveChangesAsync();
             }
             else if (user.isAdmin != true)
             {
-                 _userManager.RemoveFromRoleAsync(user, SD.AdminEndUser);
-                 _context.SaveChangesAsync();
+                _userManager.RemoveFromRoleAsync(user, SD.AdminEndUser);
+                _context.SaveChangesAsync();
             }
 
         }
@@ -108,13 +123,13 @@ namespace ApplicationRequestIt.Controllers
         {
             if (user.isBehandelaar == true)
             {
-                 _userManager.AddToRoleAsync(user, SD.BehandelaarEndUser);
-                 _context.SaveChangesAsync();
+                _userManager.AddToRoleAsync(user, SD.BehandelaarEndUser);
+                _context.SaveChangesAsync();
             }
             else if (user.isBehandelaar != true)
             {
-                 _userManager.RemoveFromRoleAsync(user, SD.BehandelaarEndUser);
-                 _context.SaveChangesAsync();
+                _userManager.RemoveFromRoleAsync(user, SD.BehandelaarEndUser);
+                _context.SaveChangesAsync();
             }
 
 

@@ -4,26 +4,33 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ApplicationRequestIt</title>
-
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <title>@ViewData["Title"] - ApplicationRequestIt</title>    
+       
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/css/materialize.css" />
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />  
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/materialize.css" />
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </environment>
 </head>
 <body>
@@ -46,9 +53,9 @@
                 {
                     <ul class="nav navbar-nav">
                         <li><a asp-area="" asp-controller="Aanvraags" asp-action="Index">Aanvragen</a></li>
-
                         @if (User.IsInRole(SD.AdminEndUser) || User.IsInRole(SD.BehandelaarEndUser))
                         {
+                            //aanvraag management
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aanvraag Beheer <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -57,9 +64,9 @@
                                 </ul>
                             </li>
                         }
-
                         @if (User.IsInRole(SD.AdminEndUser))
                         {
+                            // User management
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -70,11 +77,9 @@
                             </li>
                         }
                         <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-
                     </ul>
                 }
                 @await Html.PartialAsync("_LoginPartial")
-
             </div>
         </div>
     </nav>
@@ -91,7 +96,7 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         @*<script src="~/js/materialize.js"></script>*@
         <script src="~/js/site.js"></script>
-
+        <script type="text/javascript" src="js/materialize.min.js"></script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
@@ -100,6 +105,7 @@
                 crossorigin="anonymous"
                 integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
         </script>
+
         <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
@@ -107,9 +113,9 @@
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
-        <script src="~/js/materialize.js" asp-append-version="true"></script>
-        
-        
+        @*<script src="~/js/materialize.js" asp-append-version="true"></script>*@
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
     </environment>
 
 

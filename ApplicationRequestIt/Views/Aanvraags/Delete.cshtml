@@ -24,10 +24,18 @@
     </div>
     <div class="row">
         <div class="col-sm-4">
+            <label asp-for="Aanmaakdatum" class="control-label"></label>
+        </div>
+        <div class="col-sm-8">
+            <input asp-for="Aanmaakdatum" type="datetime" readonly class="form-control date" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
             <label asp-for="StartDatum" class="control-label"></label>
         </div>
         <div class="col-sm-8">
-            <input asp-for="StartDatum" readonly class="form-control date-text" />
+            <input asp-for="StartDatum" type="datetime" readonly class="form-control date" />
         </div>
     </div>
     <div class="row">
@@ -35,7 +43,7 @@
             <label asp-for="EindDatum" class="control-label"></label>
         </div>
         <div class="col-sm-8">
-            <input asp-for="EindDatum" readonly class="form-control date-text" />
+            <input asp-for="EindDatum" type="datetime" readonly class="form-control date" />
         </div>
     </div>
     <div class="row">
@@ -74,7 +82,7 @@
 
 <form asp-action="Delete">
     <input type="hidden" asp-for="Id" />
-    <input type="submit" value="Verwijder" class="btn red" />
+    <input type="submit" value="Verwijder" class="btn red" asp-route-isAlles="@ViewBag.isAlles" asp-route-index="@ViewBag.index" asp-route-isToegezen="@ViewBag.isToegezen" />
     @if (ViewBag.IsAlles == true)
     {
         <a asp-action="IndexAllAanvragen" asp-controller="Aanvraags" class="btn green">Terug naar overzicht</a>

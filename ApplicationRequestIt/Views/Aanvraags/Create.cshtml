@@ -4,6 +4,10 @@
     ViewData["Title"] = "Create";
 }
 
+<script>document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems, options);
+  });</script>
 
 <h2>Maak een nieuwe aanvraag</h2>
 
@@ -27,14 +31,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="StartDatum" class="control-label"></label>
-                <input type="text" asp-for="StartDatum" class="form-control datepicker"/>
-                
+                <input type="date" asp-for="StartDatum" placeholder="start datum" class="form-control datepicker"/>                
                 <span asp-validation-for="StartDatum" class="text-danger"></span>
             </div>
             
             <div class="form-group">
                 <label asp-for="EindDatum" class="control-label"></label>
-                <input type="text" asp-for="EindDatum" class="form-control datepicker" />                
+                <input type="date" placeholder="eind datum" asp-for="EindDatum" class="form-control datepicker" />                
                 <span asp-validation-for="EindDatum" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "1245a320625b9b24cf521c88ffcc475650c9d7dd"
+    "signature": "5006bd028882fa704e25d4235e6279baf1d5a69c"
   },
   "compilationOptions": {
     "defines": [
@@ -23,6 +23,7 @@
     ".NETCoreApp,Version=v2.0": {
       "ApplicationRequestIt/1.0.0": {
         "dependencies": {
+          "Bootstrap.v3.Datetimepicker": "4.17.45",
           "Microsoft.AspNetCore.All": "2.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "2.0.0",
           "Microsoft.NETCore.App": "2.0.0",
@@ -41,6 +42,17 @@
         "dependencies": {
           "jQuery": "3.0.0",
           "popper.js": "1.14.0"
+        }
+      },
+      "bootstrap.less/3.3.5": {
+        "dependencies": {
+          "jQuery": "3.0.0"
+        }
+      },
+      "Bootstrap.v3.Datetimepicker/4.17.45": {
+        "dependencies": {
+          "Moment.js": "2.9.0",
+          "bootstrap.less": "3.3.5"
         }
       },
       "jQuery/3.0.0": {},
@@ -2454,6 +2466,7 @@
           "ref/netstandard2.0/Microsoft.Win32.Registry.dll": {}
         }
       },
+      "Moment.js/2.9.0": {},
       "Newtonsoft.Json/10.0.1": {
         "dependencies": {
           "Microsoft.CSharp": "4.4.0",
@@ -4269,6 +4282,20 @@
       "path": "bootstrap/4.1.1",
       "hashPath": "bootstrap.4.1.1.nupkg.sha512"
     },
+    "bootstrap.less/3.3.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+xxiEyTJdWwO9G7Ig9gHoXl7grsncyQVy1bhWY9L41fSFUayIZYlziGcwB+ORQDzHAZJrCNa+y1bke11wJy0Ug==",
+      "path": "bootstrap.less/3.3.5",
+      "hashPath": "bootstrap.less.3.3.5.nupkg.sha512"
+    },
+    "Bootstrap.v3.Datetimepicker/4.17.45": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0/m8BCfhDRhWdiXm8RAHS0lVfaE64/93tDyINtrf4/cBpXGnVU7o5pFP6FhGhelTX7eH0hpLc8+j2obumhI9oA==",
+      "path": "bootstrap.v3.datetimepicker/4.17.45",
+      "hashPath": "bootstrap.v3.datetimepicker.4.17.45.nupkg.sha512"
+    },
     "jQuery/3.0.0": {
       "type": "package",
       "serviceable": true,
@@ -5479,6 +5506,13 @@
       "sha512": "sha512-dA36TlNVn/XfrZtmf0fiI/z1nd3Wfp2QVzTdj26pqgP9LFWq0i1hYEUAW50xUjGFYn1+/cP3KGuxT2Yn1OUNBQ==",
       "path": "microsoft.win32.registry/4.4.0",
       "hashPath": "microsoft.win32.registry.4.4.0.nupkg.sha512"
+    },
+    "Moment.js/2.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4rhbvFzmgXp/gjvwjxt9Qjmdz+2CD9T99erXEDtZHlYxaI06F9A4628/Vpxklm8D9RmwJjKjp1244FwEh+a5WQ==",
+      "path": "moment.js/2.9.0",
+      "hashPath": "moment.js.2.9.0.nupkg.sha512"
     },
     "Newtonsoft.Json/10.0.1": {
       "type": "package",

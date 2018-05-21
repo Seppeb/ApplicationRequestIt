@@ -23,7 +23,7 @@ namespace ApplicationRequestIt.Controllers
         public bool IsIndexToegewezen;
 
         private readonly ApplicationDbContext _context;
-        
+
         public AanvraagsController(ApplicationDbContext context)
         {
             _context = context;
@@ -46,14 +46,18 @@ namespace ApplicationRequestIt.Controllers
             var applicationDbContext = from s in _context.Aanvragen.Where(u => u.UserId == userId)
                 .Include(a => a.ApplicationUser)
                 .Include(a => a.Status)
-                .Include(a=>a.BehandelaarApplicationUser)
-                select s;
+                .Include(a => a.BehandelaarApplicationUser)
+                                       select s;
 
 
             if (!string.IsNullOrEmpty(searchString))
             {
                 applicationDbContext = applicationDbContext
-                    .Where(s => s.ApplicationUser.Voornaam.Contains(searchString) || s.ApplicationUser.Achternaam.Contains(searchString) || s.Titel.Contains(searchString) || s.Omschrijving.Contains(searchString) || s.Status.Naam.Contains(searchString));
+                    .Where(s => s.ApplicationUser.Voornaam.Contains(searchString) ||
+                    s.ApplicationUser.Achternaam.Contains(searchString) ||
+                    s.Titel.Contains(searchString) ||
+                    s.Omschrijving.Contains(searchString) ||
+                    s.Status.Naam.Contains(searchString));
             }
 
             return View(await applicationDbContext.ToListAsync());
@@ -73,30 +77,31 @@ namespace ApplicationRequestIt.Controllers
             ViewData["GebruikerSort"] = String.IsNullOrEmpty(sortOrder) ? "gebruiker_desc" : "";
             ViewData["BehandelaarSort"] = String.IsNullOrEmpty(sortOrder) ? "behandelaar_desc" : "";
             ViewData["StatusSort"] = String.IsNullOrEmpty(sortOrder) ? "status_desc" : "";
-            
+
 
 
             var lijstaanvragen = from a in _context.Aanvragen
                .Include(a => a.ApplicationUser)
                .Include(a => a.Status)
-               .Include(a => a.BehandelaarApplicationUser) 
+               .Include(a => a.BehandelaarApplicationUser)
                .OrderBy(a => a.ApplicationUser.UserName)
-               select a;
+                                 select a;
             //sort           
 
             //search
             if (!string.IsNullOrEmpty(searchString))
             {
                 lijstaanvragen = lijstaanvragen
-                    .Where(s => s.ApplicationUser.Voornaam.Contains(searchString) 
-                    || s.ApplicationUser.Achternaam.Contains(searchString) 
-                    || s.Titel.Contains(searchString) 
+                    .Where(
+                       s => s.ApplicationUser.Voornaam.Contains(searchString)
+                    || s.ApplicationUser.Achternaam.Contains(searchString)
+                    || s.Titel.Contains(searchString)
                     || s.Omschrijving.Contains(searchString)
                     || s.ApplicationUser.UserName.Contains(searchString)
                     || s.ApplicationUser.Email.Contains(searchString)
                     || s.Status.Naam.Contains(searchString));
             }
-            
+
             return View(await lijstaanvragen.ToListAsync());
         }
         // Get: Aanvraags
@@ -120,13 +125,13 @@ namespace ApplicationRequestIt.Controllers
             return View(await lijstaanvragen.ToListAsync());
         }
 
-        
+
 
         // GET: Aanvraags/Details/5
         public async Task<IActionResult> Details(int? id, bool index, bool isAlles, bool isToegezen)
         {
-            
-            
+
+
             ViewBag.index = index;
             ViewBag.isAlles = isAlles;
             ViewBag.isToegezen = isToegezen;
@@ -140,7 +145,7 @@ namespace ApplicationRequestIt.Controllers
             return await AanvraagberichtenViewmodel(id);
         }
 
-        
+
         private async Task<IActionResult> AanvraagberichtenViewmodel(int? id)
         {
             var aanvraag = await _context.Aanvragen
@@ -166,7 +171,7 @@ namespace ApplicationRequestIt.Controllers
                 aanvraag = aanvraag,
                 berichten = berichten
             };
-            
+
             return View(model);
         }
 
@@ -183,7 +188,7 @@ namespace ApplicationRequestIt.Controllers
             {
                 _context.Add(bericht);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details","Aanvraags",new { id = aanvraagId });
+                return RedirectToAction("Details", "Aanvraags", new { id = aanvraagId });
             }
 
             return await AanvraagberichtenViewmodel(bericht.AanvraagId);
@@ -193,9 +198,9 @@ namespace ApplicationRequestIt.Controllers
         public IActionResult Create(bool isVraag, string UserId, bool index, bool isAlles, bool isToegezen)
         {
 
-            ViewBag.index = index;
-            ViewBag.isAlles = isAlles;
-            ViewBag.isToegezen = isToegezen;
+            //ViewBag.index = index;
+            //ViewBag.isAlles = isAlles;
+            //ViewBag.isToegezen = isToegezen;
 
             Aanvraag aanvraag;
 
@@ -203,23 +208,15 @@ namespace ApplicationRequestIt.Controllers
             {
                 UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             }
-            if (isVraag == true)
+
+            aanvraag = new Aanvraag
             {
-                aanvraag = new Aanvraag
-                {
-                    IsVraag = true,
-                    UserId = UserId
-                };
-            }
-            else
-            {
-                aanvraag = new Aanvraag
-                {
-                    UserId = UserId
-                };
-            }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Voornaam");
-            ViewData["StatusId"] = new SelectList(_context.Statussen, "Id", "Naam");
+                IsVraag = true,
+                UserId = UserId               
+            };
+
+            //ViewData["UserId"] = new SelectList(_context.Users, "Id", "Voornaam");
+            //ViewData["StatusId"] = new SelectList(_context.Statussen, "Id", "Naam");
             return View(aanvraag);
         }
 
@@ -245,7 +242,7 @@ namespace ApplicationRequestIt.Controllers
                 else if (IsIndexToegewezen)
                 {
                     return RedirectToAction(nameof(IndexToegewezen));
-                }                
+                }
                 return RedirectToAction(nameof(Index));
             }
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", aanvraag.UserId);
@@ -264,13 +261,12 @@ namespace ApplicationRequestIt.Controllers
             IsIndexToegewezen = isToegezen;
             IsIndexallaanvragen = isAlles;
 
-
             if (id == null)
             {
                 return NotFound();
             }
             ViewData["UrlPath"] = Url;
-            
+
             var aanvraag = await _context.Aanvragen.SingleOrDefaultAsync(m => m.Id == id);
             isVraag = aanvraag.IsVraag;
             if (aanvraag == null)
@@ -295,7 +291,6 @@ namespace ApplicationRequestIt.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -314,18 +309,18 @@ namespace ApplicationRequestIt.Controllers
                         throw;
                     }
                 }
-                if (IsIndex)
+                if (index)
                 {
                     return RedirectToAction(nameof(Index));
                 }
-                else if (IsIndexallaanvragen)
+                else if (isAlles)
                 {
                     return RedirectToAction(nameof(IndexAllAanvragen));
                 }
-                else if (IsIndexToegewezen)
+                else if (isToegezen)
                 {
                     return RedirectToAction(nameof(IndexToegewezen));
-                }                
+                }
                 return RedirectToAction(nameof(Index));
             }
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", aanvraag.UserId);
@@ -366,9 +361,17 @@ namespace ApplicationRequestIt.Controllers
         // POST: Aanvraags/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, bool index, bool isAlles, bool isToegezen)
         {
-            
+
+            ViewBag.index = index;
+            ViewBag.isAlles = isAlles;
+            ViewBag.isToegezen = isToegezen;
+
+            IsIndex = index;
+            IsIndexToegewezen = isToegezen;
+            IsIndexallaanvragen = isAlles;
+
             var aanvraag = await _context.Aanvragen.SingleOrDefaultAsync(m => m.Id == id);
             _context.Aanvragen.Remove(aanvraag);
             await _context.SaveChangesAsync();

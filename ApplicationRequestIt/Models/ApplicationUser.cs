@@ -21,7 +21,6 @@ namespace ApplicationRequestIt.Models
 
         public ICollection<Aanvraag> CustomerAanvragen { get; set; }
         public ICollection<Aanvraag> BehandelaarAanvragen { get; set; }
-
         public ICollection<Bericht> UserBerichten { get; set; }
 
     }

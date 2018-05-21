@@ -67,24 +67,18 @@ namespace ApplicationRequestIt
             }
 
             app.UseStaticFiles();
-
             app.UseAuthentication();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-
-            //aanmaak users
-            //CreateUsers.CreateUserRoles(serviceProvider).Wait();
             //aanmaak data
             DbInitializer.Initialize(context, serviceProvider).Wait();
 
-            // test
-            //BInitializer.Initialize();
+            DbInitializer.Aanvragen(context, serviceProvider).Wait();
+            
         }
         //    private async Task CreateUserRoles(IServiceProvider serviceProvider)
         //    { 

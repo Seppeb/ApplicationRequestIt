@@ -25,93 +25,109 @@ else
             </div>
             <div class="form-group">
                 <label asp-for="Omschrijving" class="control-label"></label>
-                <input asp-for="Omschrijving" class="form-control" />
+                <textarea asp-for="Omschrijving" class="form-control"></textarea>
                 <span asp-validation-for="Omschrijving" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StartDatum" class="control-label"></label>
-                <input asp-for="StartDatum" disabled class="form-control" />
-                <span asp-validation-for="StartDatum" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EindDatum" class="control-label"></label>
-                <input asp-for="EindDatum" disabled class="form-control" />
-                <span asp-validation-for="EindDatum" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Aanmaakdatum" class="control-label"></label>
-                <input asp-for="Aanmaakdatum" disabled class="form-control" />
+                <input type="datetime" asp-for="Aanmaakdatum" disabled class="form-control" />
                 <span asp-validation-for="Aanmaakdatum" class="text-danger"></span>
-            </div>           
-
-            <div class="form-group">
-                <label asp-for="LinkVoorbeeldKlant" class="control-label"></label>
-                <input asp-for="LinkVoorbeeldKlant" class="form-control btn-link" />
-                <span asp-validation-for="LinkVoorbeeldKlant" class="text-danger"></span>
             </div>
 
             @if (User.IsInRole(SD.AdminEndUser) || User.IsInRole(SD.BehandelaarEndUser))
-            {
-                <div class="form-group">
-                    <label asp-for="LinkVoorbeeldBehandelaar" class="control-label"></label>
-                    <input asp-for="LinkVoorbeeldBehandelaar" class="form-control btn-link" />
-                    <span asp-validation-for="LinkVoorbeeldBehandelaar" class="text-danger"></span>
-                </div>
-                    <div class="form-group">
-                        <label asp-for="Status" class="control-label"></label>
-                        <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusList"></select>
-                        <span asp-validation-for="StatusId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="BehandelaarApplicationUser" class="control-label"></label>
-                        <select asp-for="BehandelaarId" class="form-control" asp-items="ViewBag.BehandelaarId"></select>
-                        <span asp-validation-for="BehandelaarId" class="text-danger"></span>
-                    </div>
-            }
-            else
-            {
+    {
+        <div class="form-group">
+            <label asp-for="StartDatum" class="control-label"></label>
+            <input type="text" asp-for="StartDatum" class="form-control datepicker" />
+            <span asp-validation-for="StartDatum" class="text-danger"></span>
+        </div>        
+        <div class="form-group">
+            <label asp-for="EindDatum" class="control-label"></label>
+            <input type="datetime" asp-for="EindDatum" class="form-control date-text" />
+            <span asp-validation-for="EindDatum" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LinkVoorbeeldKlant" class="control-label"></label>
+            <input asp-for="LinkVoorbeeldKlant" class="form-control btn-link" />
+            <span asp-validation-for="LinkVoorbeeldKlant" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LinkVoorbeeldBehandelaar" class="control-label"></label>
+            <input asp-for="LinkVoorbeeldBehandelaar" class="form-control btn-link" />
+            <span asp-validation-for="LinkVoorbeeldBehandelaar" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Status" class="control-label"></label>
+            <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusList"></select>
+            <span asp-validation-for="StatusId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="BehandelaarApplicationUser" class="control-label"></label>
+            <select asp-for="BehandelaarId" class="form-control" asp-items="ViewBag.BehandelaarId"></select>
+            <span asp-validation-for="BehandelaarId" class="text-danger"></span>
+        </div>
+}
+else
+{
+        <div class="form-group">
+            <label asp-for="StartDatum" class="control-label"></label>
+            <input type="datetime" asp-for="StartDatum" disabled class="form-control datepicker" />
+            <span asp-validation-for="StartDatum" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EindDatum" class="control-label"></label>
+            <input type="datetime" asp-for="EindDatum" disabled class="form-control datepicker" />
+            <span asp-validation-for="EindDatum" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LinkVoorbeeldKlant" class="control-label"></label>
+            <input asp-for="LinkVoorbeeldKlant" class="form-control btn-link" />
+            <span asp-validation-for="LinkVoorbeeldKlant" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LinkVoorbeeldBehandelaar" class="control-label"></label>
+            <input asp-for="LinkVoorbeeldBehandelaar" readonly class="form-control" />
+            <span asp-validation-for="LinkVoorbeeldBehandelaar" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Status" class="control-label"></label>
+            <select asp-for="StatusId" class="form-control" disabled asp-items="ViewBag.StatusList"></select>
+            <input asp-for="StatusId" type="hidden" class="form-control" />
+            <span asp-validation-for="StatusId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="BehandelaarApplicationUser" class="control-label"></label>
+            <select asp-for="BehandelaarId" class="form-control" disabled asp-items="ViewBag.BehandelaarId"></select>
+            <span asp-validation-for="BehandelaarId" class="text-danger"></span>
+        </div>
 
-                <div class="form-group">
-                    <label asp-for="LinkVoorbeeldBehandelaar" class="control-label"></label>
-                    <input asp-for="LinkVoorbeeldBehandelaar" readonly class="form-control" />
-                    <span asp-validation-for="LinkVoorbeeldBehandelaar" class="text-danger"></span>
-                </div>
-                    <div class="form-group">
-                        <label asp-for="Status" class="control-label"></label>
-                        <select asp-for="StatusId" class="form-control" disabled asp-items="ViewBag.StatusList"></select>
-                        <input asp-for="StatusId" type="hidden" class="form-control" />
-                        <span asp-validation-for="StatusId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="BehandelaarApplicationUser" class="control-label"></label>
-                        <select asp-for="BehandelaarId" class="form-control" disabled asp-items="ViewBag.BehandelaarId"></select>
-                        <span asp-validation-for="BehandelaarId" class="text-danger"></span>
-                    </div>
-            }
+}
 
-            
             <div class="form-group">
-                <input asp-for="UserId" type="hidden" class="form-control" asp-route-isAlles="@ViewBag.isAlles" asp-route-index="@ViewBag.index" asp-route-isToegezen="@ViewBag.isToegezen" />
-                <input type="submit" value="Pas aan" class="btn blue" />
+                <input asp-for="UserId" type="hidden" class="form-control" />
+                <input type="submit" value="Pas aan" class="btn blue" asp-route-isAlles="@ViewBag.isAlles" asp-route-index="@ViewBag.index" asp-route-isToegezen="@ViewBag.isToegezen" />
                 @if (ViewBag.isAlles == true)
-                {
-                    <a asp-action="IndexAllAanvragen" asp-controller="Aanvraags" class="btn green">Terug naar overzicht</a>
-                }
-                else if (ViewBag.index == true)
-                {
-                    <a asp-action="Index" asp-controller="Aanvraags" class="btn green">Terug naar overzicht</a>
+        {
+            <a asp-action="IndexAllAanvragen" asp-controller="Aanvraags" class="btn green">Terug naar overzicht</a>
+}
+else if (ViewBag.index == true)
+{
+        <a asp-action="Index" asp-controller="Aanvraags" class="btn green">Terug naar overzicht</a>
+}
+else if (ViewBag.isToegezen == true)
+{
+        <a asp-action="IndexToegewezen" asp-controller="Aanvraags" class="btn green">Terug naar overzicht</a>
+}
 
-                }
-                else if (ViewBag.isToegezen == true)
-                {
-                    <a asp-action="IndexToegewezen" asp-controller="Aanvraags" class="btn green">Terug naar overzicht</a>
-                }                
-               
             </div>
         </form>
     </div>
 </div>
-
+<script>
+    $(document).ready(function () {
+        $('.datepicker').datepicker();
+    });
+</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

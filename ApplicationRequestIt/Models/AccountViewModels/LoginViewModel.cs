@@ -8,11 +8,11 @@ namespace ApplicationRequestIt.Models.AccountViewModels
 {
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "gelieve je gebruikersnaam te voorzien")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "gelieve je paswoord te voorzien")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

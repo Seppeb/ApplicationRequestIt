@@ -9,8 +9,7 @@
     <div class="col">
         <div class="text-left">
             <p>
-                <a class="btn blue" asp-action="Create">Nieuwe Aanvraag</a>
-                @*<a class="btn btn-info" asp-route-isVraag="true" asp-action="Create">Stel een Vraag</a>*@
+                <a class="btn blue" asp-action="Create">Nieuwe Aanvraag</a>                
             </p>
         </div>
         <div class=" text-right">
@@ -38,10 +37,7 @@ else
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Titel)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Omschrijving)
-                </th>                
+                </th>                             
                 <th>
                     @Html.DisplayNameFor(model => model.StartDatum)
                 </th>
@@ -66,10 +62,7 @@ else
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Titel)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Omschrijving)
-                    </td>
+                    </td>                    
                     <td>
                         @Html.DisplayFor(modelItem => item.StartDatum)
                     </td>

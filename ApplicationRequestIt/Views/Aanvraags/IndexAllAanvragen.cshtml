@@ -20,19 +20,15 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Titel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Omschrijving)
-            </th>
+            </th>            
             <th>
                 Gebruiker
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StartDatum)
+                @Html.DisplayNameFor(Model => Model.Aanmaakdatum)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EindDatum)
-            </th>
+                Periode
             <th>
                 @Html.DisplayNameFor(model => model.LinkVoorbeeldKlant)
             </th>
@@ -51,52 +47,49 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Titel)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Omschrijving)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDatum)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EindDatum)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LinkVoorbeeldKlant)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LinkVoorbeeldBehandelaar)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status.Naam)
-                </td>
-                @if (item.BehandelaarApplicationUser == null)
-                {
-                    <td>Geen toegewezen</td>
-                }
-                else
-                {
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BehandelaarApplicationUser.Voornaam) -
-                        @Html.DisplayFor(modelItem => item.BehandelaarApplicationUser.Achternaam)
-                    </td>
-                }
-                <td>
-                    <a class="btn blue glyphicon glyphicon-edit" asp-action="Edit" asp-route-id="@item.Id" asp-route-isAlles="true"></a>
-                </td>
-                <td>
-                    <a class="btn green glyphicon glyphicon-info-sign" asp-action="Details" asp-route-id="@item.Id"  asp-route-isAlles="true"></a>
-                </td>
-                <td>
-                    <a class="btn red glyphicon glyphicon-trash" asp-action="Delete" asp-route-id="@item.Id"  asp-route-isAlles="true"></a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aanmaakdatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDatum) - @Html.DisplayFor(modelItem => item.EindDatum)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkVoorbeeldKlant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkVoorbeeldBehandelaar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Naam)
+            </td>
+            @if (item.BehandelaarApplicationUser == null)
+    {
+        <td>Geen toegewezen</td>
+}
+else
+{
+        <td>
+            @Html.DisplayFor(modelItem => item.BehandelaarApplicationUser.Voornaam) -
+            @Html.DisplayFor(modelItem => item.BehandelaarApplicationUser.Achternaam)
+        </td>
+}
+            <td>
+                <a class="btn blue glyphicon glyphicon-edit" asp-action="Edit" asp-route-id="@item.Id" asp-route-isAlles="true"></a>
+            </td>
+            <td>
+                <a class="btn green glyphicon glyphicon-info-sign" asp-action="Details" asp-route-id="@item.Id" asp-route-isAlles="true"></a>
+            </td>
+            <td>
+                <a class="btn red glyphicon glyphicon-trash" asp-action="Delete" asp-route-id="@item.Id" asp-route-isAlles="true"></a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

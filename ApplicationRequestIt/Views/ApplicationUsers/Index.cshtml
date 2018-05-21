@@ -2,11 +2,20 @@
 @{
     ViewData["Title"] = "Index";
 }
-<br/>
-<h2>Gebruikerbeheer</h2>  <hr /><br/> 
-<p>
-    @*<a class="btn btn-primary" asp-action="Create">Create New</a> *@
-</p>
+<br />
+<h2>Gebruikerbeheer</h2>
+<div class=" text-right">
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <div class="row">
+                <label>Zoekterm:</label><input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+                <input type="submit" value="Search" class="btn blue" />
+                <a class="btn green" asp-action="Index">Toon alles</a>
+            </div>
+        </div>
+    </form>
+</div>
+<hr /><br />
 <form>
     <table class="table  table-condensed table-hover table-responsive">
         <thead>
@@ -63,10 +72,9 @@
                         <div class="switch">
                             <label>
                                 <input disabled asp-for="@item.isAdmin" type="checkbox" />
-                                <span class="lever"></span>                                
+                                <span class="lever"></span>
                             </label>
-                        </div>  
-                        
+                        </div>
                     </td>
                     <td>
                         <div class="switch">
@@ -75,7 +83,7 @@
                                 <span class="lever"></span>
                             </label>
                         </div>
-                        
+
                     </td>
                     <td>
                         <a class="btn blue glyphicon glyphicon-edit" asp-action="Edit" asp-route-id="@item.Id"></a>
